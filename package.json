@@ -1,13 +1,34 @@
 {
-  "name": "tickets",
+  "name": "ticket-leap",
   "version": "0.1.0",
-  "license": "MIT",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ManuelGil/tickets"
+  },
+  "bugs": {
+    "url": "https://github.com/ManuelGil/tickets/issues"
+  },
+  "support": {
+    "issues": "https://github.com/ManuelGil/tickets/issues"
+  },
+  "private": true,
+  "license": "",
+  "contributors": [
+    {
+      "name": "Santiago Rey",
+      "role": "Developer"
+    },
+    {
+      "name": "Manuel Gil",
+      "role": "Developer"
+    }
+  ],
   "scripts": {
     "dev:api": "nx serve api",
     "dev:web": "nx serve web",
     "prepare": "husky install"
   },
-  "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -20,16 +41,20 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.2.1",
+    "@nestjs/typeorm": "^9.0.1",
     "axios": "^1.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "pg": "^8.10.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.8.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "styled-components": "^5.3.9",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "typeorm": "0.3.11",
+    "typeorm-extension": "^2.6.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.5.0",
