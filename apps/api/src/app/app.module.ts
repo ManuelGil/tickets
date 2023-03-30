@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import configurations from '../../config/configurations';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import configurations from '../../config/configurations';
         synchronize: false,
       }),
     }),
+    UserModule,
   ],
   controllers: [],
   providers: [],

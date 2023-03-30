@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { UserRole } from '../../app.roles';
 
 /**
  * User class.
@@ -96,7 +97,7 @@ export class User {
   @Column({
     type: 'enum',
     enum: UserRole,
-    default: UserRole.DOCTOR,
+    default: UserRole.GUEST,
   })
   role: UserRole;
 
@@ -109,7 +110,7 @@ export class User {
     type: 'boolean',
     default: true,
   })
-  is_activated: boolean;
+  isActivated: boolean;
 
   /**
    *
@@ -120,7 +121,7 @@ export class User {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
   })
-  created_at: Date;
+  createdAt: Date;
 
   /**
    *
@@ -131,7 +132,7 @@ export class User {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
   })
-  updated_at: Date;
+  updatedAt: Date;
 
   /**
    *
@@ -143,5 +144,5 @@ export class User {
     nullable: true,
     default: null,
   })
-  deleted_at: Date;
+  deletedAt: Date;
 }

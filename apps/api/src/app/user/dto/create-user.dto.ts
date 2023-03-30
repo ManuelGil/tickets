@@ -9,6 +9,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { UserRole } from '../../app.roles';
 
 /**
  * CreateUserDto class.
@@ -16,7 +17,7 @@ import {
 export class CreateUserDto {
   /**
    *
-   * @member {string} uuid - the
+   * @member {string} uuid - the user id
    */
   @IsUUID()
   @IsNotEmpty()

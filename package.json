@@ -27,11 +27,9 @@
   "scripts": {
     "dev:api": "nx serve api",
     "dev:web": "nx serve web",
-    "typeorm": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js -d config/ormconfig.ts",
-    "make:migration": "npm run typeorm migration:generate -- ",
-    "make:seed": "ts-node -r tsconfig-paths/register node_modules/typeorm-extension/dist/cli/index.js seed -d config/ormconfig.ts",
-    "migrate:run": "npm run typeorm migration:run",
-    "migrate:revert": "npm run typeorm migration:revert",
+    "make:migration": "nx run api:mig-gen",
+    "migrate:run": "nx run api:mig-run",
+    "migrate:revert": "nx run api:mig-revert",
     "prepare": "husky install"
   },
   "dependencies": {

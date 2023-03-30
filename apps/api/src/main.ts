@@ -17,6 +17,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('API Docs')
     .setVersion('1.0')
+    .addTag('users')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
@@ -43,9 +44,7 @@ async function bootstrap() {
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
   );
 
-  Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}/docs`
-  );
+  Logger.log(`📄 Documentation is running on: http://localhost:${port}/docs`);
 }
 
 bootstrap();

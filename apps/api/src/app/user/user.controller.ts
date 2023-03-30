@@ -16,8 +16,8 @@ import { UserService } from './user.service';
 /**
  * UserController class.
  */
-@ApiTags('user')
-@Controller('user')
+@ApiTags('users')
+@Controller('users')
 export class UserController {
   /**
    * This is the constructor method.
@@ -68,7 +68,7 @@ export class UserController {
   @Patch(':uuid')
   update(
     @Param('uuid', ParseUUIDPipe) uuid: string,
-    @Body() updateUserDto: UpdateUserDto,
+    @Body() updateUserDto: UpdateUserDto
   ) {
     return this.userService.update(uuid, updateUserDto);
   }

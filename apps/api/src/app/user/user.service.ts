@@ -17,7 +17,7 @@ export class UserService {
    * @param {Repository} userRepository - injects a repository.
    */
   constructor(
-    @InjectRepository(User) private userRepository: Repository<User>,
+    @InjectRepository(User) private userRepository: Repository<User>
   ) {}
 
   /**
