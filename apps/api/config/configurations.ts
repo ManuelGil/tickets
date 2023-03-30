@@ -7,6 +7,6 @@ export default () => ({
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_DATABASE,
-    logging: process.env.DATABASE_LOGGING,
+    logging: process.env.DATABASE_LOGGING || false,
   },
 });

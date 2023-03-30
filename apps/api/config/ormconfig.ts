@@ -1,4 +1,3 @@
-import { ConfigService } from '@nestjs/config';
 import { ConfigModule } from '@nestjs/config/dist/config.module';
 import { DataSource } from 'typeorm';
 import { SeederOptions } from 'typeorm-extension';
@@ -8,10 +7,14 @@ ConfigModule.forRoot({
   envFilePath: '.env',
 });
 
-const configService = new ConfigService();
-
 const options = {
-  ...configService.get('database'),
+  type: 'postgres',
+  host: process.env.DATABASE_HOST || 'localhost',
+  port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_DATABASE,
+  logging: process.env.DATABASE_LOGGING || false,
   entities: [__dirname + '/../src/**/*.entity.ts'],
   migrationsTableName: 'migrations',
   migrations: [__dirname + '/../src/migrations/**/*.ts'],
