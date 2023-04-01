@@ -28,8 +28,9 @@
     "dev:api": "nx serve api",
     "dev:web": "nx serve web",
     "make:migration": "nx run api:mig-gen",
+    "make:seed": "nx run api:seed",
     "migrate:run": "nx run api:mig-run",
-    "migrate:revert": "nx run api:mig-revert",
+    "migrate:revert": "nx run api:mig-rev",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -45,7 +46,9 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.2.1",
     "@nestjs/typeorm": "^9.0.1",
+    "@types/bcrypt": "^5.0.0",
     "axios": "^1.0.0",
+    "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "pg": "^8.10.0",

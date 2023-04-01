@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import configurations from '../../config/configurations';
+import configs from '../../config/api.config';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -10,21 +10,13 @@ import { UserModule } from './user/user.module';
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
-      load: [configurations],
+      load: [configs],
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('database.host'),
-        port: +configService.get('database.port'),
-        username: configService.get('database.username'),
-        password: configService.get('database.password'),
-        database: configService.get('database.database'),
-        logging: configService.get('database.logging'),
-        retryAttempts: 10,
-        retryDelay: 3000,
-        entities: [__dirname + '/entities/**/*.entity.ts'],
+        ...configService.get('database'),
+        entities: [__dirname + '/**/*.entity.ts'],
         autoLoadEntities: true,
         synchronize: false,
       }),

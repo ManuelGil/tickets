@@ -92,14 +92,14 @@ export class User {
 
   /**
    *
-   * @member {UserRole} role - the user's role
+   * @member {Array} roles - the user's role
    */
   @Column({
-    type: 'enum',
+    type: 'simple-array',
     enum: UserRole,
-    default: UserRole.GUEST,
+    default: [UserRole.GUEST],
   })
-  role: UserRole;
+  roles: UserRole[];
 
   /**
    *

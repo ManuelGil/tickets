@@ -61,7 +61,7 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "ts-node --project tsconfig.app.json ../../node_modules/typeorm/cli -d ../../apps/api/config/ormconfig.ts",
+        "command": "ts-node --project tsconfig.app.json ../../node_modules/typeorm/cli -d ../../apps/api/config/typeorm.config.ts",
         "cwd": "apps/api"
       }
     },
@@ -69,7 +69,7 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "nx run api:typeorm migration:generate ../../apps/api/migrations/{args.name}",
+        "command": "nx run api:typeorm migration:generate --pretty ../../apps/api/src/database/migrations/{args.name}",
         "cwd": "apps/api"
       }
     },
@@ -81,7 +81,7 @@
         "cwd": "apps/api"
       }
     },
-    "mig-revert": {
+    "mig-rev": {
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
@@ -93,7 +93,7 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "ts-node --project tsconfig.app.json ../../node_modules/typeorm-extension/dist/cli/index.js seed -d ../../apps/api/config/ormconfig.ts",
+        "command": "ts-node --project tsconfig.app.json ../../node_modules/typeorm-extension/dist/cli/index.js seed -d ../../apps/api/config/typeorm.config.ts",
         "cwd": "apps/api"
       }
     }
