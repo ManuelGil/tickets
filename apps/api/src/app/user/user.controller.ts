@@ -6,9 +6,11 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { ParseUUIDPipe } from '@nestjs/common/pipes/parse-uuid.pipe';
 import { ApiTags } from '@nestjs/swagger/dist';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
@@ -18,6 +20,7 @@ import { UserService } from './user.service';
  */
 @ApiTags('users')
 @Controller('users')
+@UseGuards(JwtAuthGuard)
 export class UserController {
   /**
    * This is the constructor method.

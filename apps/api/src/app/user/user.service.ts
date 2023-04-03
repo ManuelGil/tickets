@@ -63,7 +63,23 @@ export class UserService {
    * @returns - the user.
    */
   async findOne(uuid: string) {
-    const user = await this.userRepository.findBy({ uuid });
+    const user = await this.userRepository.findOneBy({ uuid });
+
+    if (!user) {
+      throw new NotFoundException();
+    }
+
+    return user;
+  }
+
+  /**
+   * This method gets an user.
+   *
+   * @param {string} username - the user's id.
+   * @returns - the user.
+   */
+  async findOneByUsername(username: string) {
+    const user = await this.userRepository.findOneBy({ username });
 
     if (!user) {
       throw new NotFoundException();
