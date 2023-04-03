@@ -61,7 +61,7 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "ts-node --project tsconfig.app.json ../../node_modules/typeorm/cli -d ../../apps/api/config/typeorm.config.ts",
+        "command": "ts-node --project tsconfig.app.json ../../node_modules/typeorm/cli -d ../../apps/api/config/api.config.ts",
         "cwd": "apps/api"
       }
     },
@@ -93,7 +93,7 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "ts-node --project tsconfig.app.json ../../node_modules/typeorm-extension/dist/cli/index.js seed -d ../../apps/api/config/typeorm.config.ts",
+        "command": "ts-node --project tsconfig.app.json ../../node_modules/typeorm-extension/dist/cli/index.js seed -d ../../apps/api/config/api.config.ts",
         "cwd": "apps/api"
       }
     }
