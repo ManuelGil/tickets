@@ -1,8 +1,9 @@
 import { ConfigModule } from '@nestjs/config';
 import { DataSource } from 'typeorm';
-import { DataSourceOptions } from 'typeorm/data-source';
-import InitSeeder from '../src/database/seeds/init.seeder';
 import { SeederOptions } from 'typeorm-extension';
+import { DataSourceOptions } from 'typeorm/data-source';
+
+import InitSeeder from '../src/database/seeds/init.seeder';
 
 ConfigModule.forRoot({
   envFilePath: '.env',
@@ -23,6 +24,7 @@ export const dbPorpertiesCreator = () => {
       seeds: [InitSeeder],
     };
   };
+
   const extendedConfig = () => {
     const basicConfigObj = baseConfig();
     return {

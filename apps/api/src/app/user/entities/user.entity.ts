@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
 import { UserRole } from '../../app.roles';
 
 /**
@@ -14,6 +15,7 @@ import { UserRole } from '../../app.roles';
 @Entity('users')
 export class User {
   /**
+   * This variable contains the user's id.
    *
    * @member {string} uuid - the user's id
    */
@@ -21,6 +23,7 @@ export class User {
   uuid: string;
 
   /**
+   * This variable contains the user name.
    *
    * @member {string} username - the username
    */
@@ -32,8 +35,9 @@ export class User {
   username: string;
 
   /**
+   * This variable contains the user's password.
    *
-   * @member {string} password - the password (hash)
+   * @member {string} password - the user password
    */
   @Column({
     type: 'varchar',
@@ -42,6 +46,7 @@ export class User {
   password: string;
 
   /**
+   * This variable contains the first name.
    *
    * @member {string} firstName - the user's first name
    */
@@ -55,6 +60,7 @@ export class User {
   firstName: string;
 
   /**
+   * This variable contains the last name.
    *
    * @member {string} lastName - the user's last name
    */
@@ -68,8 +74,9 @@ export class User {
   lastName: string;
 
   /**
+   * This variable contains the email.
    *
-   * @member {string} phone - the contact email
+   * @member {string} email - the user email
    */
   @Column({
     type: 'varchar',
@@ -79,8 +86,9 @@ export class User {
   email: string;
 
   /**
+   * This variable contains the phone number.
    *
-   * @member {string} phone - the contact phone
+   * @member {string} phone - the phone
    */
   @Column({
     type: 'varchar',
@@ -91,8 +99,9 @@ export class User {
   phone: string;
 
   /**
+   * This variable contains the user name.
    *
-   * @member {Array} roles - the user's role
+   * @member {array} roles - the user's roles
    */
   @Column({
     type: 'simple-array',
@@ -102,6 +111,7 @@ export class User {
   roles: UserRole[];
 
   /**
+   * This variable contains the user name.
    *
    * @member {boolean} is_activated - is true when the entity is activated
    */
@@ -113,6 +123,7 @@ export class User {
   isActivated: boolean;
 
   /**
+   * This variable contains the user name.
    *
    * @member {Date} createdAt - the create date
    */
@@ -124,6 +135,7 @@ export class User {
   createdAt: Date;
 
   /**
+   * This variable contains the user name.
    *
    * @member {Date} updatedAt - the update date
    */
@@ -135,6 +147,7 @@ export class User {
   updatedAt: Date;
 
   /**
+   * This variable contains the user name.
    *
    * @member {Date} deletedAt - the delete date
    */

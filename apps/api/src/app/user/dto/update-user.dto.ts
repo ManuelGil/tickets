@@ -7,13 +7,17 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+
 import { CreateUserDto } from './create-user.dto';
 
 /**
  * UpdateUserDto class.
+ *
+ * The Data Transfer Object to update an user.
  */
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   /**
+   * This variable contains the first name.
    *
    * @member {string} firstName - the first name
    */
@@ -23,6 +27,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   firstName: string;
 
   /**
+   * This variable contains the last name.
    *
    * @member {string} lastName - the last name
    */
@@ -32,6 +37,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   lastName: string;
 
   /**
+   * This variable contains the user name.
    *
    * @member {string} username - the user name
    */
@@ -41,6 +47,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   username: string;
 
   /**
+   * This variable contains the email.
    *
    * @member {string} email - the email
    */
@@ -50,6 +57,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   email: string;
 
   /**
+   * This variable contains the password.
    *
    * @member {string} password - the password
    */
@@ -59,6 +67,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   password: string;
 
   /**
+   * This variable contains the phone number.
    *
    * @member {string} phone - the phone
    */

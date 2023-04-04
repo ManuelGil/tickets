@@ -1,7 +1,7 @@
 import {
   IsAlphanumeric,
+  IsArray,
   IsEmail,
-  IsEnum,
   IsNotEmpty,
   IsOptional,
   IsString,
@@ -9,13 +9,17 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+
 import { UserRole } from '../../app.roles';
 
 /**
  * CreateUserDto class.
+ *
+ * The Data Transfer Object to create an user.
  */
 export class CreateUserDto {
   /**
+   * This variable contains the user's id.
    *
    * @member {string} uuid - the user id
    */
@@ -24,6 +28,7 @@ export class CreateUserDto {
   uuid: string;
 
   /**
+   * This variable contains the first name.
    *
    * @member {string} firstName - the first name
    */
@@ -33,6 +38,7 @@ export class CreateUserDto {
   firstName: string;
 
   /**
+   * This variable contains the last name.
    *
    * @member {string} lastName - the last name
    */
@@ -42,6 +48,7 @@ export class CreateUserDto {
   lastName: string;
 
   /**
+   * This variable contains the user name.
    *
    * @member {string} username - the user name
    */
@@ -51,6 +58,7 @@ export class CreateUserDto {
   username: string;
 
   /**
+   * This variable contains the email.
    *
    * @member {string} email - the email
    */
@@ -60,6 +68,7 @@ export class CreateUserDto {
   email: string;
 
   /**
+   * This variable contains the user's password.
    *
    * @member {string} password - the password
    */
@@ -69,6 +78,7 @@ export class CreateUserDto {
   password: string;
 
   /**
+   * This variable contains the phone number.
    *
    * @member {string} phone - the phone
    */
@@ -78,10 +88,11 @@ export class CreateUserDto {
   phone: string;
 
   /**
+   * This variable contains the user name.
    *
-   * @member {UserRole} role - the role
+   * @member {array} roles - the user's roles
    */
+  @IsArray()
   @IsNotEmpty()
-  @IsEnum(UserRole)
-  role: UserRole;
+  roles: UserRole[];
 }

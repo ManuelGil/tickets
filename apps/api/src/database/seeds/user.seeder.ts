@@ -1,9 +1,13 @@
 import { hash } from 'bcrypt';
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
+
 import { UserRole } from '../../app/app.roles';
 import { User } from '../../app/user';
 
+/**
+ * UserSeeder class.
+ */
 export default class UserSeeder implements Seeder {
   public async run(
     dataSource: DataSource,

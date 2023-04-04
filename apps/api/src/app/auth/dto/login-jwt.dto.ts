@@ -19,7 +19,7 @@ export class LoginJwtDto {
    */
   @IsNotEmpty()
   @IsAlphanumeric()
-  @MinLength(2)
+  @MinLength(4)
   @MaxLength(100)
   username: string;
 
@@ -29,7 +29,7 @@ export class LoginJwtDto {
    * @member {string} password - the password.
    */
   @IsOptional()
-  @MinLength(2)
+  @MinLength(6)
   @MaxLength(255)
   password: string;
 }

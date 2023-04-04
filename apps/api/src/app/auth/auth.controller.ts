@@ -7,11 +7,15 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
+
 import { User } from '../user';
 import { AuthService } from './auth.service';
 import { LoginJwtDto } from './dto/login-jwt.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
+/**
+ * AuthController class.
+ */
 @Controller('auth')
 export class AuthController {
   /**

@@ -1,5 +1,6 @@
 import { hash } from 'bcrypt';
 import { setSeederFactory } from 'typeorm-extension';
+
 import { UserRole } from '../../app/app.roles';
 import { User } from '../../app/user';
 
