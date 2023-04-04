@@ -37,14 +37,15 @@ export class AuthService {
     if (!compareSync(password, user.password))
       throw new UnauthorizedException();
 
-    const token = await this.jwtService.sign({
+    const token = this.jwtService.sign({
       iat: Math.ceil(Date.now() / 1000),
       exp: Math.ceil((Date.now() + 30 * 60 * 1000) / 1000),
       id: user.uuid,
+      email: user.email,
       roles: user.roles,
     });
 
-    const refreshToken = await this.jwtService.sign({
+    const refreshToken = this.jwtService.sign({
       iat: Math.ceil(Date.now() / 1000),
       exp: Math.ceil((Date.now() + 4 * 60 * 60 * 1000) / 1000),
       id: user.uuid,
@@ -55,7 +56,6 @@ export class AuthService {
 
   /**
    * This method renews the JWT credentials.
-   *
    * @param {string} uuid - the user's id.
    * @returns {Promise<object>} - the object with JWT cretentials.
    */
@@ -64,14 +64,14 @@ export class AuthService {
 
     if (!user || !user.isActivated) throw new UnauthorizedException();
 
-    const token = await this.jwtService.sign({
+    const token =  this.jwtService.sign({
       iat: Math.ceil(Date.now() / 1000),
       exp: Math.ceil((Date.now() + 30 * 60 * 1000) / 1000),
       id: user.uuid,
       roles: user.roles,
     });
 
-    const refreshToken = await this.jwtService.sign({
+    const refreshToken =  this.jwtService.sign({
       iat: Math.ceil(Date.now() / 1000),
       exp: Math.ceil((Date.now() + 4 * 60 * 60 * 1000) / 1000),
       id: user.uuid,
