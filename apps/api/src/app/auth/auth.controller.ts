@@ -6,7 +6,7 @@ import {
   UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { User } from '../user';
 import { AuthService } from './auth.service';
@@ -16,6 +16,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 /**
  * AuthController class.
  */
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   /**
