@@ -41,6 +41,7 @@ export class AuthService {
       iat: Math.ceil(Date.now() / 1000),
       exp: Math.ceil((Date.now() + 30 * 60 * 1000) / 1000),
       id: user.uuid,
+      username: user.username,
       email: user.email,
       roles: user.roles,
     });

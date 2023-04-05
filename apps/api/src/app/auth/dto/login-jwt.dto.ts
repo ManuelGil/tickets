@@ -29,7 +29,7 @@ export class LoginJwtDto {
    * @member {string} password - the password.
    */
   @IsOptional()
-  @MinLength(6)
+  @MinLength(4)
   @MaxLength(255)
   password: string;
 }
