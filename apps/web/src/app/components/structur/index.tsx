@@ -10,19 +10,15 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import {mainListItems, secondaryListItems } from '../../components/listItems';
+import { mainListItems, secondaryListItems } from '../../utils/listItems';
 import { createTheme } from '../../theme/appTheme';
-import Copyright from '../../components/Copyright';
-import Tickes from '../../components/Tickes';
-//import Chart from './Chart';
-//import Deposits from './Deposits';
+import Copyright from '../copyright';
+import { useSelector } from 'react-redux';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Avatar } from '@mui/material';
 
 const drawerWidth: number = 240;
 
@@ -74,10 +70,11 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-
-
-function DashboardContent() {
+const SketchContent = ({ children }: { children: JSX.Element }) => {
   const [open, setOpen] = React.useState(true);
+
+  const user = useSelector((state: { user: any }) => state.user);
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -104,6 +101,10 @@ function DashboardContent() {
             >
               <MenuIcon />
             </IconButton>
+            <Avatar
+              alt="Remy Sharp"
+              src="https://mui.com/static/images/avatar/1.jpg"
+            />
             <Typography
               component="h1"
               variant="h6"
@@ -117,6 +118,15 @@ function DashboardContent() {
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
+            </IconButton>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="primary-search-account-menu"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <AccountCircle />
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -153,49 +163,14 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-               {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                 {/*<Chart />*/}                  
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  {/*<Deposits />*/}
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Tickes/>
-                </Paper>
-              </Grid>
-            </Grid>
-            <Copyright sx={{ pt: 4 }} />
-          </Container>
+          {/** CONTENT */}
+          {children}
+          {/** /CONTENT */}
+          <Copyright sx={{ pt: 4 }} />
         </Box>
       </Box>
     </ThemeProvider>
   );
-}
+};
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+export default SketchContent;

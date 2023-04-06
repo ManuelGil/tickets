@@ -5,6 +5,10 @@
 - Generate migration files
 
 ```
+npx nx g @nrwl/nest:resource --project api --directory="app"
+```
+
+```
 npm run make:migration -- --name=<name>
 ```
 

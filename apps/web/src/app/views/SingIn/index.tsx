@@ -13,14 +13,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import useSingIn from './hook';
-import Copyright from '../../components/Copyright';
+import Copyright from '../../components/copyright';
 import { createTheme } from '../../theme/appTheme';
 import { Alert } from '@mui/material';
-import { useParams } from 'react-router-dom';
-
 
 export default function SignIn() {
-  const {ticketId} = useParams()
   const singIn = useSingIn();
 
   return (
@@ -71,11 +68,12 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Alert 
-              variant="outlined" 
+            <Alert
+              variant="outlined"
               severity="error"
               onClose={singIn.triggerAlert}
-              sx={{ display: singIn.shouldAlertBeVisible }}>
+              sx={{ display: singIn.shouldAlertBeVisible }}
+            >
               Credentials are wrong
             </Alert>
             <Button

@@ -6,6 +6,7 @@ import * as Joi from 'joi';
 import { configs } from '../../config/api.config';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { TicketModule } from './ticket/ticket.module';
 
 /**
  * AppModule class.
@@ -42,6 +43,7 @@ import { UserModule } from './user/user.module';
     }),
     UserModule,
     AuthModule,
+    TicketModule,
   ],
   controllers: [],
   providers: [],

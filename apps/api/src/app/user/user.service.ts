@@ -27,7 +27,7 @@ export class UserService {
    * @param {CreateUserDto} createUserDto  - contains the user's information.
    * @returns - the new user.
    */
-  async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto): Promise<User> {
     let user = await this.userRepository.findOneBy({
       uuid: createUserDto.uuid,
     });
