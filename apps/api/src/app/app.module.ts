@@ -7,6 +7,7 @@ import { configs } from '../../config/api.config';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TicketModule } from './ticket/ticket.module';
+import { MessageModule } from './message/message.module';
 
 /**
  * AppModule class.
@@ -44,6 +45,7 @@ import { TicketModule } from './ticket/ticket.module';
     UserModule,
     AuthModule,
     TicketModule,
+    MessageModule,
   ],
   controllers: [],
   providers: [],
