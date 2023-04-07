@@ -1,4 +1,4 @@
-import { Get, Injectable } from '@nestjs/common';
+import { Get, Injectable, Post } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,10 +12,16 @@ export class TicketService {
     @InjectRepository(Ticket) private ticketRepository: Repository<Ticket>
   ){}
 
-  create(createTicketDto: CreateTicketDto) {
-    return 'This action adds a new ticket';
+
+  async create(createTicketDto: CreateTicketDto) {
+    const ticketAtDb = await this.ticketRepository.findBy({id: createTicketDto.id});
+    if(!ticketAtDb) return{error:'object found at db'}
+    const ticket= await this.ticketRepository.save(createTicketDto);
+    console.log("🚀 ~ file: ticket.service.ts:17 ~ TicketService ~ create ~ ticket:", ticket)
+    return ticket;
   }
-  @Get()
+
+
   async findAll() {
     const [result, total] = 
     await this.ticketRepository.findAndCount({relations:['messages']});
@@ -26,8 +32,10 @@ export class TicketService {
     };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ticket`;
+  async findOne(id: string) {
+    const ticket = 
+        await this.ticketRepository.findOneBy({ id:id });
+    return ticket;
   }
 
   update(id: number, updateTicketDto: UpdateTicketDto) {

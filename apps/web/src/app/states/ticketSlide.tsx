@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export type messageStructur = {
-  id: number;
+  id: string;
   user: string;
   data: string;
 };
 
 export type ticketStructur = {
-  id: number;
-  date: string;
+  id: string;
+  creationDate: string;
   title: string;
   description: string,
   techSupport: string;

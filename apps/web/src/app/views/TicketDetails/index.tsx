@@ -72,7 +72,7 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-function TicketView() {
+function TicketContentView() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -95,6 +95,6 @@ function TicketView() {
   );
 }
 
-export default function Ticket() {
-  return <TicketView />;
+export default function TicketDetails() {
+  return <TicketContentView />;
 }

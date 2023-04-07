@@ -3,6 +3,7 @@ import { Message } from '../../message/entities/message.entity';
 
 @Entity('tickets')
 export class Ticket {
+  
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
