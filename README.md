@@ -1,5 +1,7 @@
 # TicketLeap
-
+**TODO**
+there problem when there is not message an ticket
+The message are not saved when a ticket is created
 ## Commands
 
 - Generate migration files
