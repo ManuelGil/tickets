@@ -15,6 +15,7 @@ export class CreateTicketDto {
   @IsNotEmpty()
   status: string;
 
+  @IsNotEmpty()
   techSupport: string;
 
   @IsNotEmpty()
@@ -22,6 +23,7 @@ export class CreateTicketDto {
 
   @IsNotEmpty()
   creationDate: string;
-
+  
+  @IsNotEmpty()
   messages: Message[];
 }

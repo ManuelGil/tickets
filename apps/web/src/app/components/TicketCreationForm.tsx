@@ -4,8 +4,11 @@ import { useState } from 'react';
 import { ticketStructur } from '../states/ticketSlide';
 import Title from './Title';
 import { messageStructur } from '../states/ticketSlide';
-
+import { useCreateTicket } from '../api/ticketsRequest/createNewTicket';
+import { v4 as uuidv4 } from 'uuid';
 export default function TicketCreationForm() {
+  const createTicket = useCreateTicket();
+
   const initialStateTicket = {
     application: '',
     id: '',
@@ -13,7 +16,7 @@ export default function TicketCreationForm() {
     description: '',
     lastContact: '',
     messages: [],
-    state: '',
+    status: '',
     techSupport: '',
     title: '',
     user: '',
@@ -41,30 +44,27 @@ export default function TicketCreationForm() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.table(data);
-    const messageGiven:messageStructur={
-        id:"",
-        user:data.get('user') as string,
-        data: data.get('messages') as string
-    }
-    const ticketToSave:ticketStructur = {
-        id: "",
-        application: data.get('application') as string,
-        creationDate: Date.now.toString(),
-        description: data.get('description') as string,
-        lastContact: Date.now.toString(),
-        messages: [messageGiven],
-        state: 'Open',
-        techSupport: 'None',
-        title: data.get('title') as string,
-        user: data.get('user') as string
-    }
-    /**
-         * const user{}
-        const response = await sumitLogin(user)
-        .then((res) => res.json())
-        .then(res => res['token'])
-        .catch(err => triggerAlert());
+    const messageGiven: messageStructur = {
+      id: uuidv4(),
+      user: data.get('userName') as string,
+      data: data.get('messages') as string,
+    };
+    const ticketToSave: ticketStructur = {
+      id: uuidv4(),
+      application: data.get('application') as string,
+      creationDate: new Date().toUTCString(),
+      description: data.get('description') as string,
+      lastContact: new Date().toUTCString(),
+      messages: [messageGiven],
+      status: 'Open',
+      techSupport: 'Not selected',
+      title: data.get('ticketTitle') as string,
+      user: data.get('userName') as string,
+    };
+
+    const response = await createTicket(ticketToSave).then((res) => res.json());
+
+    /*
         if(response){
           const userFetched: userSketch = {
             username: data.get('email') as string,
@@ -75,7 +75,7 @@ export default function TicketCreationForm() {
         }else{
           triggerAlert()
         }
-         */
+    */
   };
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>

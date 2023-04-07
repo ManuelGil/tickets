@@ -1,4 +1,3 @@
-import { ticketStructur } from '../../states/ticketSlide';
 import { useFecht } from '../fetchHook';
 
 export const useGetTicketByID = () => {

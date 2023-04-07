@@ -1,24 +1,32 @@
-import { Get, Injectable, Post } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Message } from '../message/entities/message.entity';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Ticket } from './entities/ticket.entity';
-import { Repository } from 'typeorm';
 
 @Injectable()
 export class TicketService {
 
   constructor(
-    @InjectRepository(Ticket) private ticketRepository: Repository<Ticket>
+    @InjectRepository(Ticket) private ticketRepository: Repository<Ticket>,
+    @InjectRepository(Message) private messageRepository: Repository<Message>
   ){}
 
 
   async create(createTicketDto: CreateTicketDto) {
-    const ticketAtDb = await this.ticketRepository.findBy({id: createTicketDto.id});
-    if(!ticketAtDb) return{error:'object found at db'}
-    const ticket= await this.ticketRepository.save(createTicketDto);
-    console.log("🚀 ~ file: ticket.service.ts:17 ~ TicketService ~ create ~ ticket:", ticket)
-    return ticket;
+    const ticketAtDb = await this.ticketRepository.findOneBy({id: createTicketDto.id});
+    if(ticketAtDb) throw new NotFoundException(`El ticket con ID ${createTicketDto.id} ya existe.`);
+    
+    const message = this.messageRepository.create(createTicketDto.messages[0]);
+    console.log("🚀 ~ file: ticket.service.ts:26 ~ TicketService ~ create ~ message:", message)
+    await this.ticketRepository.save(message);
+
+    const ticket = this.ticketRepository.create(createTicketDto);
+    const savedTicket = await this.ticketRepository.save(ticket);
+
+    return {savedTicket, message};
   }
 
 

@@ -74,7 +74,7 @@ function createData(
   description: string,
   techSupport: string,
   user: string,
-  state: string,
+  status: string,
   lastContact: string,
   application: string,
   messages: messageStructur[]
@@ -86,7 +86,7 @@ function createData(
     description,
     techSupport,
     user: user,
-    state: state,
+    status: status,
     lastContact,
     application,
     messages,

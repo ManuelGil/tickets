@@ -13,7 +13,7 @@ export type ticketStructur = {
   description: string,
   techSupport: string;
   user: string;
-  state: string;
+  status: string;
   lastContact: string;
   application: string;
   messages: messageStructur[];

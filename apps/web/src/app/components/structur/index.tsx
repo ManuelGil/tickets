@@ -101,10 +101,6 @@ const SketchContent = ({ children }: { children: JSX.Element }) => {
             >
               <MenuIcon />
             </IconButton>
-            <Avatar
-              alt="Remy Sharp"
-              src="https://mui.com/static/images/avatar/1.jpg"
-            />
             <Typography
               component="h1"
               variant="h6"
