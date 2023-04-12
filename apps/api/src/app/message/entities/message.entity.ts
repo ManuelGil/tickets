@@ -21,11 +21,9 @@ export class Message {
   })
   data: string;
 
-  @ManyToOne(() => Ticket, (ticket) => ticket.messages, {
-    orphanedRowAction: 'soft-delete',
-  })
+  @ManyToOne(() => Ticket, (ticket) => ticket.messages)
   @JoinColumn({
-    name: 'ticket_id',
+    name: 'message_id',
     referencedColumnName: 'id',
   })
   ticket: Ticket;

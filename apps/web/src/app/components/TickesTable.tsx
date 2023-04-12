@@ -49,7 +49,7 @@ export default function Tickes() {
               <TableCell>{row.title}</TableCell>
               <TableCell>{row.techSupport}</TableCell>
               <TableCell>{row.user}</TableCell>
-              <TableCell>{`${row.state}`}</TableCell>
+              <TableCell>{`${row.status}`}</TableCell>
               <TableCell align="center">
                 <Chip
                   label="more"

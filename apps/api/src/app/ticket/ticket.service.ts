@@ -19,14 +19,11 @@ export class TicketService {
     const ticketAtDb = await this.ticketRepository.findOneBy({id: createTicketDto.id});
     if(ticketAtDb) throw new NotFoundException(`El ticket con ID ${createTicketDto.id} ya existe.`);
     
-    const message = this.messageRepository.create(createTicketDto.messages[0]);
-    console.log("🚀 ~ file: ticket.service.ts:26 ~ TicketService ~ create ~ message:", message)
-    await this.ticketRepository.save(message);
-
     const ticket = this.ticketRepository.create(createTicketDto);
     const savedTicket = await this.ticketRepository.save(ticket);
+    console.log("🚀 ~ file: ticket.service.ts:24 ~ TicketService ~ create ~ savedTicket:", savedTicket)
 
-    return {savedTicket, message};
+    return {savedTicket};
   }
 
 

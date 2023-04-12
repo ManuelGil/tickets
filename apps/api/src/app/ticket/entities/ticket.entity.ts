@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Message } from '../../message/entities/message.entity';
 
 @Entity('tickets')
@@ -37,7 +37,11 @@ export class Ticket {
 
   @OneToMany(
     ()=>Message, 
-    (message)=>message.ticket
+    (message)=>message.ticket,
+    {
+      cascade: true,
+    }
     )
+
   messages: Message[];
 }

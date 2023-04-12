@@ -41,8 +41,8 @@ export default function TicketCard() {
     description: '',
     application: '',
     lastContact: '',
-    messages: [{id:0,data:"",user:""}],
-    state: '',
+    messages: [{id:'',data:"",user:""}],
+    status:'',
     techSupport: '',
     title: '',
     user: '',
@@ -96,7 +96,7 @@ export default function TicketCard() {
           Status
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {row.state}
+          {row.status}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class message1680827258058 implements MigrationInterface {
-    name = 'message1680827258058'
+export class messageticketCascate1680975968940 implements MigrationInterface {
+    name = 'messageticketCascate1680975968940'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
@@ -28,7 +28,7 @@ export class message1680827258058 implements MigrationInterface {
                 "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
                 "user" character varying,
                 "data" character varying,
-                "ticketId" uuid,
+                "message_id" uuid,
                 CONSTRAINT "PK_ba01f0a3e0123651915008bc578" PRIMARY KEY ("id")
             )
         `);
@@ -46,13 +46,13 @@ export class message1680827258058 implements MigrationInterface {
         `);
         await queryRunner.query(`
             ALTER TABLE "message"
-            ADD CONSTRAINT "FK_0b780eaa7d705c91500fc22bf8c" FOREIGN KEY ("ticketId") REFERENCES "tickets"("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+            ADD CONSTRAINT "FK_06a563cdbd963a9f7cbcb25c447" FOREIGN KEY ("message_id") REFERENCES "tickets"("id") ON DELETE NO ACTION ON UPDATE NO ACTION
         `);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            ALTER TABLE "message" DROP CONSTRAINT "FK_0b780eaa7d705c91500fc22bf8c"
+            ALTER TABLE "message" DROP CONSTRAINT "FK_06a563cdbd963a9f7cbcb25c447"
         `);
         await queryRunner.query(`
             DROP TABLE "tickets"
