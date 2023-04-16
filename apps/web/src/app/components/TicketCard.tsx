@@ -41,26 +41,26 @@ export default function TicketCard() {
     description: '',
     application: '',
     lastContact: '',
-    messages: [{id:0,data:"",user:""}],
-    state: '',
+    messages: [{ id: '', data: '', user: '' }],
+    status: '',
     techSupport: '',
     title: '',
     user: '',
-  }
-  const getTicketById =  useGetTicketByID()
+  };
+  const getTicketById = useGetTicketByID();
   const [row, setRow] = React.useState<ticketStructur>(ticket);
 
   const [expanded, setExpanded] = React.useState(false);
 
   const { ticketId } = useParams();
 
-  const handleGetTicket = async ()=>{
-    const row = await getTicketById(ticketId+"").then(res=>res.json());    
+  const handleGetTicket = async () => {
+    const row = await getTicketById(ticketId + '').then((res) => res.json());
     setRow(row);
-  }
+  };
 
   React.useEffect(() => {
-    handleGetTicket()
+    handleGetTicket();
   }, []);
 
   const handleExpandClick = () => {
@@ -96,7 +96,7 @@ export default function TicketCard() {
           Status
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {row.state}
+          {row.status}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -117,10 +117,9 @@ export default function TicketCard() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <MessageList messagesGiven={row.messages}/>
+          <MessageList messagesGiven={row.messages} />
         </CardContent>
       </Collapse>
     </Paper>
   );
 }
-

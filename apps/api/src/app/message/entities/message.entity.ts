@@ -66,7 +66,7 @@ export class Message {
     orphanedRowAction: 'soft-delete',
   })
   @JoinColumn({
-    name: 'ticket_id',
+    name: 'message_id',
     referencedColumnName: 'id',
   })
   ticket: Ticket;

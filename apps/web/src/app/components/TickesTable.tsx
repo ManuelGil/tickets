@@ -11,23 +11,23 @@ import { useGetAllTickets } from '../api/ticketsRequest/getAllTickets';
 import { ticketStructur } from '../states/ticketSlide';
 
 export default function Tickes() {
-  const [rowsTickes, setRowTickets] = React.useState<ticketStructur[]>([])
+  const [rowsTickes, setRowTickets] = React.useState<ticketStructur[]>([]);
   const navigate = useNavigate();
-  const getAllTickes = useGetAllTickets()
-  React.useEffect(()=>{
-    requestTickets()
-  },[])
+  const getAllTickes = useGetAllTickets();
+  React.useEffect(() => {
+    requestTickets();
+  }, []);
 
-  const requestTickets = async ()=>{
-    const newTicketsRow = await getAllTickes().then(res=>res.json());
+  const requestTickets = async () => {
+    const newTicketsRow = await getAllTickes().then((res) => res.json());
     setRowTickets(newTicketsRow['data']);
-  }
+  };
 
   const ticketSelected = (event: any, row: any) => {
     event.preventDefault();
     navigate(`../ticket/${row.id}`, { replace: true });
   };
-  
+
   return (
     <React.Fragment>
       <Title>Recent Tickets</Title>
@@ -49,7 +49,7 @@ export default function Tickes() {
               <TableCell>{row.title}</TableCell>
               <TableCell>{row.techSupport}</TableCell>
               <TableCell>{row.user}</TableCell>
-              <TableCell>{`${row.state}`}</TableCell>
+              <TableCell>{`${row.status}`}</TableCell>
               <TableCell align="center">
                 <Chip
                   label="more"
