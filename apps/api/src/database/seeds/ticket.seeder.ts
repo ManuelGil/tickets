@@ -8,7 +8,6 @@ export default class TicketSeeder implements Seeder {
     dataSource: DataSource,
     factoryManager: SeederFactoryManager
   ): Promise<any> {
-
     const ticketFactory = await factoryManager.get(Ticket);
     await ticketFactory.saveMany(10);
   }

@@ -1,3 +1,5 @@
+import { UserRole } from '../../app.roles';
+
 /**
  * TokenInterface interface.
  *
@@ -14,7 +16,7 @@ export interface TokenInterface {
   /**
    * This variable contains the user's role.
    *
-   * @member {string} roles - the user's role.
+   * @member {array} roles - the user's role.
    */
-  roles?: string;
+  roles?: UserRole[];
 }

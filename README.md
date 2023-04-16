@@ -1,14 +1,16 @@
 # TicketLeap
-**TODO**
-there problem when there is not message an ticket
-The message are not saved when a ticket is created
+
+
+
 ## Commands
 
-- Generate migration files
+- Create CRUD
 
 ```
 npx nx g @nrwl/nest:resource --project api --directory="app"
 ```
+
+- Generate migration files
 
 ```
 npm run make:migration -- --name=<name>

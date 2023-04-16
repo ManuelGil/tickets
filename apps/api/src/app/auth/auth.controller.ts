@@ -6,7 +6,7 @@ import {
   UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { User } from '../user';
 import { AuthService } from './auth.service';
@@ -15,6 +15,8 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 /**
  * AuthController class.
+ *
+ * This controller handles the authentication by JWT.
  */
 @ApiTags('auth')
 @Controller('auth')
@@ -32,6 +34,8 @@ export class AuthController {
    * @param {LoginJwtDto} loginJwtDto - contains the `username` and `password`.
    * @returns {Object} - the object with JWT cretentials.
    */
+  @ApiOperation({ summary: 'Login to your account' })
+  @ApiBody({ type: [LoginJwtDto] })
   @Post('login')
   async login(@Body() loginJwtDto: LoginJwtDto) {
     const data = await this.authService.login(loginJwtDto);
@@ -44,6 +48,7 @@ export class AuthController {
    * @param {Object} request - injects the `request`.
    * @returns {Object} - the object with JWT cretentials.
    */
+  @ApiOperation({ summary: 'Update session token' })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Post('refresh-token')
@@ -61,6 +66,7 @@ export class AuthController {
    * @param {Object} request - injects the `request`.
    * @returns {User} - the current user.
    */
+  @ApiOperation({ summary: 'Get user by token' })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Post('user')

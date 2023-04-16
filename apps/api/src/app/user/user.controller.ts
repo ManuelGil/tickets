@@ -3,13 +3,22 @@ import {
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
+  Req,
+  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
-import { ParseUUIDPipe } from '@nestjs/common/pipes/parse-uuid.pipe';
-import { ApiTags } from '@nestjs/swagger/dist';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -18,45 +27,61 @@ import { UserService } from './user.service';
 
 /**
  * UserController class.
+ *
+ * This controller handles the user.
  */
 @ApiTags('users')
-@Controller('users')
+@ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
+@Controller('users')
 export class UserController {
   /**
    * This is the constructor method.
    *
-   * @param {UserService} userService - injects the UserService.
+   * @param {UserService} userService - injects the `UserService`.
    */
   constructor(private readonly userService: UserService) {}
 
   /**
-   * This method created a new user.
+   * This method create a new user.
    *
    * @param {CreateUserDto} createUserDto - contains the user's information.
-   * @returns - the new user.
+   * @param {Object} request - injects the `request`.
+   * @returns
    */
+  @ApiOperation({ summary: 'Create an user' })
+  @ApiBody({ type: [CreateUserDto] })
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  create(@Body() createUserDto: CreateUserDto, @Req() request) {
+    if (!request.user || !request.user.roles) throw new UnauthorizedException();
+
+    createUserDto.createdBy = request.user.uuid;
+
     return this.userService.create(createUserDto);
   }
 
   /**
-   * This method gets all user.
+   * This method gets all users.
    *
-   * @returns - all user.
+   * @param {FilterCompaniesDto} params - filters for the searh.
+   * @param {Object} request - injects the `request`.
    */
+  @ApiOperation({ summary: 'List all user' })
   @Get()
-  findAll() {
+  findAll(@Req() request) {
+    if (!request.user) throw new UnauthorizedException();
+
     return this.userService.findAll();
   }
 
   /**
-   * This method gets an user.
+   * This method return one user.
    *
    * @param {string} uuid - the user's id.
-   * @returns - the user.
+   * @returns {User} - the user object.
    */
+  @ApiOperation({ summary: 'Get an user by uuid' })
+  @ApiParam({ name: 'uuid', description: 'The user id' })
   @Get(':uuid')
   findOne(@Param('uuid', ParseUUIDPipe) uuid: string) {
     return this.userService.findOne(uuid);
@@ -67,22 +92,36 @@ export class UserController {
    *
    * @param {string} uuid - the user's id.
    * @param {UpdateUserDto} updateUserDto - contains the user's information.
-   * @returns - the user.
+   * @param {Object} request - injects the `request`.
+   * @returns {User} - the updated user.
    */
+  @ApiOperation({ summary: 'Update an user by uuid' })
+  @ApiParam({ name: 'uuid', description: 'The user id' })
+  @ApiBody({ type: [UpdateUserDto] })
   @Patch(':uuid')
   update(
     @Param('uuid', ParseUUIDPipe) uuid: string,
-    @Body() updateUserDto: UpdateUserDto
+    @Body() updateUserDto: UpdateUserDto,
+    @Req() request
   ) {
+    if (!request.user || !request.user.roles) throw new UnauthorizedException();
+
+    if (request.user.uuid !== uuid) throw new NotFoundException();
+
+    delete updateUserDto.roles;
+    delete updateUserDto.isActivated;
+
     return this.userService.update(uuid, updateUserDto);
   }
 
   /**
    * This method deletes an user.
    *
-   * @param uuid - the user's id.
-   * @returns - the operation result.
+   * @param {string} uuid - the user's id.
+   * @returns {Object} - the result of delete.
    */
+  @ApiOperation({ summary: 'Delete an user by uuid' })
+  @ApiParam({ name: 'uuid', description: 'The user id' })
   @Delete(':uuid')
   remove(@Param('uuid', ParseUUIDPipe) uuid: string) {
     return this.userService.remove(uuid);

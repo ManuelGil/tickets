@@ -7,6 +7,8 @@ import { LoginJwtDto } from './dto/login-jwt.dto';
 
 /**
  * AuthService class.
+ *
+ * This service uses a UserService and JwtService to create JWT credentials.
  */
 @Injectable()
 export class AuthService {
@@ -30,14 +32,14 @@ export class AuthService {
   async login(loginJwtDto: LoginJwtDto): Promise<object> {
     const { username, password } = loginJwtDto;
 
-    const user = await this.userService.findOneByUsername(username);
+    const user = await this.userService.findOneBy({ username });
 
     if (!user || !user.isActivated) throw new UnauthorizedException();
 
     if (!compareSync(password, user.password))
       throw new UnauthorizedException();
 
-    const token = this.jwtService.sign({
+    const token = await this.jwtService.sign({
       iat: Math.ceil(Date.now() / 1000),
       exp: Math.ceil((Date.now() + 30 * 60 * 1000) / 1000),
       id: user.uuid,
@@ -46,7 +48,7 @@ export class AuthService {
       roles: user.roles,
     });
 
-    const refreshToken = this.jwtService.sign({
+    const refreshToken = await this.jwtService.sign({
       iat: Math.ceil(Date.now() / 1000),
       exp: Math.ceil((Date.now() + 4 * 60 * 60 * 1000) / 1000),
       id: user.uuid,
@@ -57,6 +59,7 @@ export class AuthService {
 
   /**
    * This method renews the JWT credentials.
+   *
    * @param {string} uuid - the user's id.
    * @returns {Promise<object>} - the object with JWT cretentials.
    */
@@ -65,14 +68,14 @@ export class AuthService {
 
     if (!user || !user.isActivated) throw new UnauthorizedException();
 
-    const token =  this.jwtService.sign({
+    const token = await this.jwtService.sign({
       iat: Math.ceil(Date.now() / 1000),
       exp: Math.ceil((Date.now() + 30 * 60 * 1000) / 1000),
       id: user.uuid,
       roles: user.roles,
     });
 
-    const refreshToken =  this.jwtService.sign({
+    const refreshToken = await this.jwtService.sign({
       iat: Math.ceil(Date.now() / 1000),
       exp: Math.ceil((Date.now() + 4 * 60 * 60 * 1000) / 1000),
       id: user.uuid,

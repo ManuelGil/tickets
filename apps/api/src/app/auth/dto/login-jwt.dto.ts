@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsAlphanumeric,
   IsNotEmpty,
@@ -17,6 +18,13 @@ export class LoginJwtDto {
    *
    * @member {string} username - the username.
    */
+  @ApiProperty({
+    required: true,
+    type: 'varchar',
+    minLength: 4,
+    maxLength: 100,
+    uniqueItems: true,
+  })
   @IsNotEmpty()
   @IsAlphanumeric()
   @MinLength(4)
@@ -28,6 +36,13 @@ export class LoginJwtDto {
    *
    * @member {string} password - the password.
    */
+  @ApiProperty({
+    required: true,
+    type: 'varchar',
+    minLength: 4,
+    maxLength: 255,
+    nullable: true,
+  })
   @IsOptional()
   @MinLength(4)
   @MaxLength(255)

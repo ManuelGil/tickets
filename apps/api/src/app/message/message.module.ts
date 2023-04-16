@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Message } from './entities/message.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Message, Ticket])],
+  imports: [TypeOrmModule.forFeature([Message, Ticket])],
   controllers: [MessageController],
   providers: [MessageService],
 })

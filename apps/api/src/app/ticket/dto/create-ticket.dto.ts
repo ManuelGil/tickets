@@ -23,7 +23,7 @@ export class CreateTicketDto {
 
   @IsNotEmpty()
   creationDate: string;
-  
+
   @IsNotEmpty()
   messages: Message[];
 }
