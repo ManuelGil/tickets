@@ -8,24 +8,24 @@ import {
 } from 'typeorm';
 
 /**
- * Note class.
+ * Annotation class.
  *
- * This entity handles the note information.
+ * This entity handles the annotation information.
  */
-@Entity('notes')
-export class Note {
+@Entity('annotations')
+export class Annotation {
   /**
-   * This variable contains the note's id.
+   * This variable contains the annotation's id.
    *
-   * @member {string} uuid - the note's id.
+   * @member {string} uuid - the annotation's id.
    */
   @PrimaryGeneratedColumn('uuid')
   uuid: string;
 
   /**
-   * This variable contains the note's observations of the user.
+   * This variable contains the annotation's observations of the user.
    *
-   * @member {string} observations - the note's observations.
+   * @member {string} observations - the annotation's observations.
    */
   @Column({
     type: 'text',
@@ -35,7 +35,7 @@ export class Note {
   observations: string;
 
   /**
-   * This variable is `true` when the note is activated.
+   * This variable is `true` when the annotation is activated.
    *
    * @member {boolean} is_activated - is true when the entity is activated
    */
@@ -47,7 +47,7 @@ export class Note {
   isActivated: boolean;
 
   /**
-   * This variable contains the date when the note is created.
+   * This variable contains the date when the annotation is created.
    *
    * @member {Date} createdAt - the create date.
    */
@@ -59,7 +59,7 @@ export class Note {
   createdAt: Date;
 
   /**
-   * This variable contains the date when the note is updated.
+   * This variable contains the date when the annotation is updated.
    *
    * @member {Date} updatedAt - the update date.
    */
@@ -71,7 +71,7 @@ export class Note {
   updatedAt: Date;
 
   /**
-   * This variable contains the date when the note is deleted.
+   * This variable contains the date when the annotation is deleted.
    *
    * @member {Date} deletedAt - the delete date.
    */

@@ -1,17 +1,29 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
 } from '@nestjs/common';
-import { PriorityService } from './priority.service';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+
+import { JwtAuthGuard } from '../auth';
 import { CreatePriorityDto } from './dto/create-priority.dto';
 import { UpdatePriorityDto } from './dto/update-priority.dto';
+import { PriorityService } from './priority.service';
 
-@Controller('priority')
+/**
+ * PriorityController class.
+ *
+ * This controller handles the priority.
+ */
+@ApiTags('priorities')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
+@Controller('priorities')
 export class PriorityController {
   constructor(private readonly priorityService: PriorityService) {}
 

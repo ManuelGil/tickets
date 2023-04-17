@@ -16,10 +16,15 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('API Docs')
     .setVersion('1.0')
+    .addTag('annotations')
     .addTag('auth')
-    .addTag('users')
-    .addTag('tickets')
+    .addTag('categories')
+    .addTag('groups')
     .addTag('messages')
+    .addTag('priorities')
+    .addTag('products')
+    .addTag('tickets')
+    .addTag('users')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);

@@ -16,6 +16,11 @@ import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { TicketService } from './ticket.service';
 
+/**
+ * TicketController class.
+ *
+ * This controller handles the ticket.
+ */
 @ApiTags('tickets')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)

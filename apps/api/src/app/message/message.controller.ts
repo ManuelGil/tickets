@@ -16,6 +16,11 @@ import { CreateMessageDto } from './dto/create-message.dto';
 import { UpdateMessageDto } from './dto/update-message.dto';
 import { MessageService } from './message.service';
 
+/**
+ * MessageController class.
+ *
+ * This controller handles the message.
+ */
 @ApiTags('messages')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)

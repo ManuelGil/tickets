@@ -4,11 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import * as Joi from 'joi';
 import { configs } from '../../config/api.config';
+import { AnnotationModule } from './annotation/annotation.module';
 import { AuthModule } from './auth/auth.module';
 import { CategoryModule } from './category/category.module';
 import { GroupModule } from './group/group.module';
 import { MessageModule } from './message/message.module';
-import { NoteModule } from './note/note.module';
 import { PriorityModule } from './priority/priority.module';
 import { ProductModule } from './product/product.module';
 import { TicketModule } from './ticket/ticket.module';
@@ -47,11 +47,11 @@ import { UserModule } from './user/user.module';
         synchronize: false,
       }),
     }),
+    AnnotationModule,
     AuthModule,
     CategoryModule,
     GroupModule,
     MessageModule,
-    NoteModule,
     PriorityModule,
     ProductModule,
     TicketModule,
