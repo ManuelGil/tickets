@@ -3,9 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Annotation } from '../../annotation/entities/annotation.entity';
 
 /**
  * Priority class.
@@ -83,4 +86,12 @@ export class Priority {
     default: null,
   })
   deletedAt: Date;
+
+  /**
+   * This variable contains a reference with annotation entity.
+   *
+   * @member {array} annotations - the reference with annotation entity.
+   */
+  @OneToMany(() => Annotation, (annotation) => annotation.priority)
+  annotations: Annotation[];
 }

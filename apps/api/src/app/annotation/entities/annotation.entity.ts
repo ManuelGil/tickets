@@ -3,9 +3,15 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Priority } from '../../priority/entities/priority.entity';
+import { Ticket } from '../../ticket/entities/ticket.entity';
+import { User } from '../../user/entities/user.entity';
 
 /**
  * Annotation class.
@@ -82,4 +88,52 @@ export class Annotation {
     default: null,
   })
   deletedAt: Date;
+
+  /**
+   * This variable contains the relation whit ticket entity.
+   *
+   * @member {Ticket} ticket - the relation with ticket entity.
+   */
+  @ManyToOne(() => Ticket, (ticket) => ticket.annotations, {
+    onDelete: 'SET NULL',
+    nullable: true,
+    orphanedRowAction: 'nullify',
+  })
+  @JoinColumn({
+    name: 'ticket_id',
+    referencedColumnName: 'uuid',
+  })
+  ticket: Ticket;
+
+  /**
+   * This variable contains the relation whit priority entity.
+   *
+   * @member {Priority} priority - the relation with priority entity.
+   */
+  @ManyToOne(() => Priority, (priority) => priority.annotations, {
+    onDelete: 'SET NULL',
+    nullable: true,
+    orphanedRowAction: 'nullify',
+  })
+  @JoinColumn({
+    name: 'priority_id',
+    referencedColumnName: 'uuid',
+  })
+  priority: Priority;
+
+  /**
+   * This variable contains the relation whit user entity.
+   *
+   * @member {User} user - the relation with user entity.
+   */
+  @ManyToOne(() => User, (user) => user.annotations, {
+    onDelete: 'SET NULL',
+    nullable: true,
+    orphanedRowAction: 'nullify',
+  })
+  @JoinColumn({
+    name: 'user_id',
+    referencedColumnName: 'uuid',
+  })
+  user: User;
 }

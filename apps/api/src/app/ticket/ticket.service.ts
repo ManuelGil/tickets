@@ -1,6 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { randomBytes } from 'crypto';
 import { Repository } from 'typeorm';
+
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { Ticket } from './entities/ticket.entity';
@@ -13,6 +15,8 @@ export class TicketService {
 
   async create(createTicketDto: CreateTicketDto) {
     const ticket = this.ticketRepository.create(createTicketDto);
+
+    ticket.code = randomBytes(8).toString('hex');
 
     return await this.ticketRepository.save(ticket);
   }

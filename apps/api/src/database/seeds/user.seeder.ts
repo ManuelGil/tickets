@@ -3,7 +3,7 @@ import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 
 import { UserRole } from '../../app/app.roles';
-import { User } from '../../app/user';
+import { User } from '../../app/user/entities/user.entity';
 
 /**
  * UserSeeder class.

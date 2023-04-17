@@ -3,9 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Ticket } from '../../ticket/entities/ticket.entity';
 
 /**
  * Group class.
@@ -83,4 +86,12 @@ export class Group {
     default: null,
   })
   deletedAt: Date;
+
+  /**
+   * This variable contains a reference with ticket entity.
+   *
+   * @member {array} tickets - the reference with ticket entity.
+   */
+  @OneToMany(() => Ticket, (ticket) => ticket.group)
+  tickets: Ticket[];
 }

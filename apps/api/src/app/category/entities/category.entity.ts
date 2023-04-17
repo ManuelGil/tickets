@@ -3,9 +3,20 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
+  Tree,
+  TreeChildren,
+  TreeParent,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Product } from '../../product/entities/product.entity';
+import { Ticket } from '../../ticket/entities/ticket.entity';
 
 /**
  * Category class.
@@ -13,6 +24,7 @@ import {
  * This entity handles the category information.
  */
 @Entity('categories')
+@Tree('closure-table', { closureTableName: 'categories_closure' })
 export class Category {
   /**
    * This variable contains the category's id.
@@ -83,4 +95,67 @@ export class Category {
     default: null,
   })
   deletedAt: Date;
+
+  /**
+   * This variable contains the relation whit product entity.
+   *
+   * @member {Product} product - the relation with product entity.
+   */
+  @ManyToOne(() => Product, (product) => product.categories, {
+    onDelete: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
+  @JoinColumn({
+    name: 'product_id',
+    referencedColumnName: 'uuid',
+  })
+  product: Product;
+
+  /**
+   * This variable contains a reference with the children.
+   *
+   * @member {array} children - the reference with the children.
+   */
+  @TreeChildren()
+  @OneToMany(() => Category, (category) => category.parent)
+  children: Category[];
+
+  /**
+   * This variable contains the relation whit parent.
+   *
+   * @member {Category} parent - the relation with parent.
+   */
+  @TreeParent()
+  @ManyToOne(() => Category, (category) => category.children, {
+    onDelete: 'SET NULL',
+    nullable: true,
+    orphanedRowAction: 'nullify',
+  })
+  @JoinColumn({
+    name: 'parent_id',
+    referencedColumnName: 'uuid',
+  })
+  parent: Category;
+
+  /**
+   * This variable contains the reference of the many to many relation whit ticket entity.
+   *
+   * @member {array} tickets - the reference with ticket entity.
+   */
+  @ManyToMany(() => Ticket, (ticket) => ticket.categories, {
+    onDelete: 'CASCADE',
+    orphanedRowAction: 'delete',
+  })
+  @JoinTable({
+    name: 'categories_has_tickets',
+    joinColumn: {
+      name: 'category_id',
+      referencedColumnName: 'uuid',
+    },
+    inverseJoinColumn: {
+      name: 'ticket_id',
+      referencedColumnName: 'uuid',
+    },
+  })
+  tickets: Ticket[];
 }

@@ -41,7 +41,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
    */
   async validate(payload: TokenInterface) {
     return {
-      uuid: payload.id,
+      uuid: payload.uuid,
       roles: payload.roles, // this field must be of type array and named 'roles' for the access control requirement.
     };
   }

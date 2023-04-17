@@ -9,9 +9,9 @@ export interface TokenInterface {
   /**
    * This variable contains the user's id.
    *
-   * @member {string} id - the user's id.
+   * @member {string} uuid - the user's id.
    */
-  id: string;
+  uuid: string;
 
   /**
    * This variable contains the user's role.

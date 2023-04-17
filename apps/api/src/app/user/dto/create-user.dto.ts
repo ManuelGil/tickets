@@ -151,19 +151,4 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsBoolean()
   isActivated: boolean;
-
-  /**
-   * This variable contains the uuid of whoever creates the new user.
-   *
-   * @member {string} createdBy - the user's id.
-   */
-  @ApiProperty({
-    type: 'varchar',
-    maxLength: 36,
-    nullable: true,
-    default: null,
-  })
-  @IsOptional()
-  @IsString()
-  createdBy: string;
 }

@@ -3,9 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Category } from '../../category/entities/category.entity';
 
 /**
  * Product class.
@@ -83,4 +86,12 @@ export class Product {
     default: null,
   })
   deletedAt: Date;
+
+  /**
+   * This variable contains a reference with category entity.
+   *
+   * @member {array} categories - the reference with category entity.
+   */
+  @OneToMany(() => Category, (category) => category.product)
+  categories: Category[];
 }

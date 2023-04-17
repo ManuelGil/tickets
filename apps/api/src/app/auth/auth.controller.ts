@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
-import { User } from '../user';
+import { User } from '../user/entities/user.entity';
 import { AuthService } from './auth.service';
 import { LoginJwtDto } from './dto/login-jwt.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';

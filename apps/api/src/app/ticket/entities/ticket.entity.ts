@@ -3,24 +3,51 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Message } from '../../message';
 
+import { Annotation } from '../../annotation/entities/annotation.entity';
+import { Category } from '../../category/entities/category.entity';
+import { Group } from '../../group/entities/group.entity';
+import { Message } from '../../message/entities/message.entity';
+
+/**
+ * Ticket class.
+ *
+ * This entity handles the ticket information.
+ */
 @Entity('tickets')
 export class Ticket {
+  /**
+   * This variable contains the ticket's id.
+   *
+   * @member {string} uuid - the ticket's id.
+   */
   @PrimaryGeneratedColumn('uuid')
   uuid: string;
 
+  /**
+   * This variable contains the ticket's code of the user.
+   *
+   * @member {string} code - the ticket's code.
+   */
   @Column({
     type: 'varchar',
-    length: 15,
+    length: 16,
     unique: true,
   })
   code: string;
 
+  /**
+   * This variable contains the ticket's title of the user.
+   *
+   * @member {string} title - the ticket's title.
+   */
   @Column({
     type: 'varchar',
     length: 100,
@@ -29,6 +56,11 @@ export class Ticket {
   })
   title: string;
 
+  /**
+   * This variable contains the ticket's description of the user.
+   *
+   * @member {string} description - the ticket's description.
+   */
   @Column({
     type: 'text',
     nullable: true,
@@ -85,6 +117,46 @@ export class Ticket {
   })
   deletedAt: Date;
 
+  /**
+   * This variable contains a reference with annotation entity.
+   *
+   * @member {array} annotations - the reference with annotation entity.
+   */
+  @OneToMany(() => Annotation, (annotation) => annotation.ticket)
+  annotations: Annotation[];
+
+  /**
+   * This variable contains a reference with message entity.
+   *
+   * @member {array} messages - the reference with message entity.
+   */
   @OneToMany(() => Message, (message) => message.ticket)
   messages: Message[];
+
+  /**
+   * This variable contains the relation whit group entity.
+   *
+   * @member {Group} group - the relation with group entity.
+   */
+  @ManyToOne(() => Group, (group) => group.tickets, {
+    onDelete: 'SET NULL',
+    nullable: true,
+    orphanedRowAction: 'nullify',
+  })
+  @JoinColumn({
+    name: 'group_id',
+    referencedColumnName: 'uuid',
+  })
+  group: Group;
+
+  /**
+   * This variable contains the reference of the many to many relation whit category entity.
+   *
+   * @member {array} categories - the reference with category entity.
+   */
+  @ManyToMany(() => Category, (category) => category.tickets, {
+    onDelete: 'CASCADE',
+    orphanedRowAction: 'delete',
+  })
+  categories: Category[];
 }

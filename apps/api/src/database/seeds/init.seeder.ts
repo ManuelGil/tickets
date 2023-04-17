@@ -1,12 +1,12 @@
 import { DataSource } from 'typeorm';
 import { runSeeders, Seeder } from 'typeorm-extension';
 
-import userFactory from '../factories/user.factory';
-import UserSeeder from './user.seeder';
-import TicketSeeder from './ticket.seeder';
-import ticketFactory from '../factories/ticket.factory';
 import messageFactory from '../factories/message.factory';
+import ticketFactory from '../factories/ticket.factory';
+import userFactory from '../factories/user.factory';
 import MessageSeeder from './message.seeder';
+import TicketSeeder from './ticket.seeder';
+import UserSeeder from './user.seeder';
 
 /**
  * InitSeeder class.

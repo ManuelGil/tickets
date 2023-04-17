@@ -3,10 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Annotation } from '../../annotation/entities/annotation.entity';
 import { UserRole } from '../../app.roles';
 
 /**
@@ -127,21 +129,6 @@ export class User {
   isActivated: boolean;
 
   /**
-   * This variable contains the uuid of whoever creates the new user.
-   *
-   * @member {string} createdBy - the user's id.
-   */
-  @Column({
-    name: 'created_by',
-    type: 'varchar',
-    length: 36,
-    nullable: true,
-    default: null,
-    select: false,
-  })
-  createdBy: string;
-
-  /**
    * This variable contains the date when the user is created.
    *
    * @member {Date} createdAt - the create date.
@@ -177,4 +164,12 @@ export class User {
     default: null,
   })
   deletedAt: Date;
+
+  /**
+   * This variable contains a reference with annotation entity.
+   *
+   * @member {array} annotations - the reference with annotation entity.
+   */
+  @OneToMany(() => Annotation, (annotation) => annotation.user)
+  annotations: Annotation[];
 }

@@ -1,8 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-
 import { compareSync } from 'bcrypt';
-import { User, UserService } from '../user';
+
+import { User } from '../user/entities/user.entity';
+import { UserService } from '../user/user.service';
 import { LoginJwtDto } from './dto/login-jwt.dto';
 
 /**
