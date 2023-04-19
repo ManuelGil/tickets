@@ -7,14 +7,17 @@ import store from './app/states/store';
 import { Provider } from 'react-redux';
 
 import router from './app/rotes/appRouter';
+import { UIProvider } from './app/states/context/UIProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <HelmetProvider>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <UIProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </UIProvider>
   </HelmetProvider>
 );

@@ -19,8 +19,9 @@ import Copyright from './copyright';
 import { useSelector } from 'react-redux';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Avatar } from '@mui/material';
+import { UIContext } from '../../states/context/UIContext';
 
-const drawerWidth: number = 240;
+const drawerWidth = 240;
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -71,12 +72,12 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const SketchContent = ({ children }: { children: JSX.Element }) => {
-  const [open, setOpen] = React.useState(true);
-
   const user = useSelector((state: { user: any }) => state.user);
 
+  const { menuOpen: open, dispatch } = React.useContext(UIContext);
+
   const toggleDrawer = () => {
-    setOpen(!open);
+    dispatch({ type: 'CHANGED' });
   };
 
   return (

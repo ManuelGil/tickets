@@ -24,6 +24,7 @@ import { useSelector } from 'react-redux';
 import Link from '@mui/material/Link';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import SketchContent from '../../components/structur';
+import { UIProvider } from '../../states/context/UIProvider';
 
 const drawerWidth = 240;
 
