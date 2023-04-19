@@ -16,10 +16,10 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../../utils/listItems';
 import { createTheme } from '../../theme/appTheme';
 import { useParams } from 'react-router-dom';
-import TicketCard from '../../components/TicketCard';
+import TicketCard from '../../components/tickets/TicketCard';
 import { Container, Grid, Paper } from '@mui/material';
-import Copyright from '../../components/copyright';
-import Tickes from '../../components/TickesTable';
+import Copyright from '../../components/structur/copyright';
+import Tickes from '../../components/tickets/TickesTable';
 import SketchContent from '../../components/structur';
 
 const drawerWidth: number = 240;

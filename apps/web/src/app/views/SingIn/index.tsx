@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import useSingIn from './hook';
-import Copyright from '../../components/copyright';
+import Copyright from '../../components/structur/copyright';
 import { createTheme } from '../../theme/appTheme';
 import { Alert } from '@mui/material';
 

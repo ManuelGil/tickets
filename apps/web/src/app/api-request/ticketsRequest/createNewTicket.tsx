@@ -6,7 +6,7 @@ export const useCreateTicket = () => {
     useFecht() &&
     ((body: ticketStructur) =>{
       console.log("🚀 ~ file: createNewTicket.tsx:9 ~ useCreateTicket ~ jsonBody:",body)
-      return useFecht().post(body, '/api/ticket');
+      return useFecht().post(body, '/api-request/ticket');
     })
   );
 };

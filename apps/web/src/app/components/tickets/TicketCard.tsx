@@ -14,10 +14,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Divider, Paper } from '@mui/material';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import { ticketStructur, messageStructur } from '../states/ticketSlide';
+import { ticketStructur, messageStructur } from '../../states/ticketSlide';
 import { useParams } from 'react-router-dom';
-import MessageList from './MessagesList';
-import { useGetTicketByID } from '../api/ticketsRequest/getTicketByID';
+import MessageList from '../MessagesList';
+import { useGetTicketByID } from '../../api-request/ticketsRequest/getTicketByID';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -54,8 +54,13 @@ export default function TicketCard() {
 
   const { ticketId } = useParams();
 
+<<<<<<< Updated upstream:apps/web/src/app/components/TicketCard.tsx
   const handleGetTicket = async () => {
     const row = await getTicketById(ticketId + '').then((res) => res.json());
+=======
+  const handleGetTicket = async ()=>{
+    const row = await getTicketById(ticketId+"").then(res=>res.json());
+>>>>>>> Stashed changes:apps/web/src/app/components/tickets/TicketCard.tsx
     setRow(row);
   };
 

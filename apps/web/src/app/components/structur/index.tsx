@@ -15,7 +15,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../../utils/listItems';
 import { createTheme } from '../../theme/appTheme';
-import Copyright from '../copyright';
+import Copyright from './copyright';
 import { useSelector } from 'react-redux';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Avatar } from '@mui/material';

@@ -1,10 +1,10 @@
 import { Box, Button, Paper, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useState } from 'react';
-import { ticketStructur } from '../states/ticketSlide';
-import Title from './Title';
-import { messageStructur } from '../states/ticketSlide';
-import { useCreateTicket } from '../api/ticketsRequest/createNewTicket';
+import { ticketStructur } from '../../states/ticketSlide';
+import Title from '../Title';
+import { messageStructur } from '../../states/ticketSlide';
+import { useCreateTicket } from '../../api-request/ticketsRequest/createNewTicket';
 import { v4 as uuidv4 } from 'uuid';
 export default function TicketCreationForm() {
   const createTicket = useCreateTicket();

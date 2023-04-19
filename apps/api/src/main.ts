@@ -29,7 +29,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
 
-  const globalPrefix = 'api';
+  const globalPrefix = 'api-request';
 
   app.setGlobalPrefix(globalPrefix);
 

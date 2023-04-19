@@ -1,8 +1,8 @@
 import { Container, Grid, Paper } from '@mui/material'
 import React from 'react'
-import TicketCard from '../../components/TicketCard'
+import TicketCard from '../../components/tickets/TicketCard'
 import SketchContent from '../../components/structur'
-import TicketCreationForm from '../../components/TicketCreationForm'
+import TicketCreationForm from '../../components/tickets/TicketCreationForm'
 
 const TicketCreationConten = () => {
   return (
