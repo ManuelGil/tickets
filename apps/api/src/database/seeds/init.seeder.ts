@@ -14,7 +14,7 @@ import UserSeeder from './user.seeder';
 export default class InitSeeder implements Seeder {
   public async run(dataSource: DataSource): Promise<any> {
     await runSeeders(dataSource, {
-      seeds: [UserSeeder, TicketSeeder, MessageSeeder],
+      seeds: [UserSeeder],
       factories: [userFactory, ticketFactory, messageFactory],
     });
   }

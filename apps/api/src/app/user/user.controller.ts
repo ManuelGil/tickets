@@ -55,8 +55,6 @@ export class UserController {
   create(@Body() createUserDto: CreateUserDto, @Req() request) {
     if (!request.user || !request.user.roles) throw new UnauthorizedException();
 
-    createUserDto.createdBy = request.user.uuid;
-
     return this.userService.create(createUserDto);
   }
 

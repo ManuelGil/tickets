@@ -54,13 +54,8 @@ export default function TicketCard() {
 
   const { ticketId } = useParams();
 
-<<<<<<< Updated upstream:apps/web/src/app/components/TicketCard.tsx
   const handleGetTicket = async () => {
     const row = await getTicketById(ticketId + '').then((res) => res.json());
-=======
-  const handleGetTicket = async ()=>{
-    const row = await getTicketById(ticketId+"").then(res=>res.json());
->>>>>>> Stashed changes:apps/web/src/app/components/tickets/TicketCard.tsx
     setRow(row);
   };
 

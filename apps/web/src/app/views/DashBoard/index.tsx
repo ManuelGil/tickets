@@ -25,7 +25,7 @@ import Link from '@mui/material/Link';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import SketchContent from '../../components/structur';
 
-const drawerWidth: number = 240;
+const drawerWidth = 240;
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -117,7 +117,8 @@ function DashboardContent() {
           {/* Recent Orders */}
           <Grid item xs={12}>
             <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-              <Tickes />
+              {/*        <Tickes /> */}
+
               <Link
                 color="primary"
                 href="#"

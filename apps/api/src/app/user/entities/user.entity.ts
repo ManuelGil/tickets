@@ -98,7 +98,7 @@ export class User {
    */
   @Column({
     type: 'varchar',
-    length: 20,
+    length: 30,
     nullable: true,
     default: null,
   })
